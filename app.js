@@ -89,7 +89,19 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             // step 3 -- do something neat with the json
             .then(peepzJson => {
-                console.log(peepzJson.results)
+                peepzJson.results.forEach(result => {
+                    console.log(result)
+                    const name = `${result.name.title} ${result.name.first} ${result.name.last}`
+                    // console.log(name)
+                    const li = document.createElement('li')
+                    const h3 = document.createElement('h3')
+                    h3.innerText = name
+                    const img = document.createElement('img')
+                    img.src = result.picture.large
+                    img.alt = name
+                    li.append(img, h3)
+                    peopleList.append(li)
+                })
             })
             // step 4 -- be a good programmer and handle errors
             .catch(console.warn)
